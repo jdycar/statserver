@@ -1,10 +1,11 @@
 ---
 - hosts: all
+  remote_user: jdy
   sudo: True
   vars:
     graphite:
       version: master
-      timezone: Europe/Paris
+      timezone: Asia/Shanghai
       workers: 4
       host: 0.0.0.0
       server: graphite.local
@@ -16,27 +17,8 @@
       name: graphite
       user: graphite
       password: graphite
-    sentry:
-      server: sentry.local
-      url: http://sentry.local
-      secret_key: 'my69eAMYjzqtmfaRJ107MeXCYDTaxQdNZPr8YOe/zOV5pIUoZa5biA=='
-    db_sentry:
-      name: sentry
-      user: sentry
-      password: sentry
-    superuser_sentry:
-      username: admin
-      email: admin@example.com
-      password: admin
   roles:
-    - common
-    - python
-    - supervisor
-    - role: nginx
-      nginx_sites: none
     - postgres
     - graphite
-    - nodejs
     - statsd
-    - sentry
 
